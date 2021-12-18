@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
+import {useEffect,useState} from 'react';
 function App() {
+  let API_kEY="6a4db62c0c717008f27c0decfaa13d29";
+  let APP_ID="207fad0a";
+  let [count,setCount] =useState(0);
+  useEffect(() => {
+    let url=`search?g=chicken&app_id=${APP_ID}&app_key=${API_kEY}`;
+      fetch(url)
+      .then(response=>{
+        return response.json();
+      })
+      .then(res=>{
+        console.log("Final response",res);
+      })
+      .catch(err=>{
+        console.log("error",err);
+      })
+  }, [count]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={()=>setCount(count+1)}> Hello</button>
+      <h1>This is saurabh</h1>
     </div>
   );
 }
